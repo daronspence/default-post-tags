@@ -1,4 +1,4 @@
-# Default Tags
+# Default Post Tags
 
 This plugin allows you to set default tags for your new blog posts. It only works on new posts, and it only works for the default blog post type (`post`).
 

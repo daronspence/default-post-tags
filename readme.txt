@@ -1,4 +1,4 @@
-=== Default Tags ===
+=== Default Post Tags ===
 Contributors: daronspence
 Donate link: https://paypal.me/daronspence
 Tags: tags
