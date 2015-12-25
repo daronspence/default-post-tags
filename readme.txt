@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Default Tags ===
 Contributors: daronspence
 Donate link: https://paypal.me/daronspence
 Tags: tags
