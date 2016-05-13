@@ -30,10 +30,11 @@ class DGS_Default_Post_Tags {
 
 	private function init() {
 		add_action( 'admin_init', array( $this, 'show_admin_notices' ), 10 );
-		add_action( 'admin_footer', array( $this, 'render_footer_js' ), 1 );
 
 		add_action( 'after-post_tag-table', array( $this, 'save_default_tags' ), 9 );
 		add_action( 'after-post_tag-table', array( $this, 'render_view' ), 10 );
+
+		add_action( 'save_post_post', array( $this, 'save_post_add_tags' ), 10, 3 );
 	}
 
 	function show_admin_notices(){
@@ -52,38 +53,12 @@ class DGS_Default_Post_Tags {
 
 	}
 
-	function render_footer_js(){
-
-		global $post;
-		global $pagenow;
-		
-		$pages = array('post-new.php');
-
-		// Bail early if we are not on an edit screen and editng a blog post
-		if ( ! in_array($pagenow, $pages ) || $post->post_type !== 'post' )
+	function save_post_add_tags( $post_id, $post, $update ){
+		if ( $update ){
 			return;
+		}
 
-		$new_default_tags = get_option('dgs_default_post_tags');
-
-		?>
-			<script type="text/javascript">
-
-				(function(){
-
-					var newDefaultTags = '<?php echo $new_default_tags; ?>';
-
-					var $defaultTagEl = jQuery('#tax-input-post_tag');
-
-					var $defaultTagVal = jQuery.trim( $defaultTagEl.val() );
-
-					$defaultTagEl.val( $defaultTagVal + "," + newDefaultTags );
-
-				})();
-
-			</script>
-
-		<?php
-
+		wp_add_post_tags( $post_id, get_option( 'dgs_default_post_tags', '' ) );
 	}
 
 	function render_view(){
@@ -111,7 +86,7 @@ class DGS_Default_Post_Tags {
 	function save_default_tags(){
 
 		if ( isset( $_REQUEST['dgs-default-post-tags'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'dgs-save-post-tags' ) ){
-			update_option( 'dgs_default_post_tags', trim( esc_html( $_REQUEST['dgs-default-post-tags'] ) ) );
+			update_option( 'dgs_default_post_tags', esc_html( trim( $_REQUEST['dgs-default-post-tags'] ) ) );
 		}
 
 	}
