@@ -3,7 +3,7 @@
  * Plugin Name: Default Post Tags
  * Description: Adds default tags to your the <code>post_tag</code> taxonomy when creating a new post.
  * Author: Daron Spence
- * Version: 1.0
+ * Version: 2.0
  * Author URI: http://daronspence.com/
  * Text Domain: dgs-default-post-tags
  */

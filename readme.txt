@@ -4,7 +4,7 @@ Donate link: https://paypal.me/daronspence
 Tags: tags
 Requires at least: 3.0.1
 Tested up to: 4.5
-Stable tag: 1.0
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,11 @@ No. Not currently.
 
 
 == Changelog ==
+
+= 2.0 =
+* Breaking Change: Removed old tag insertion function.
+* New tag insertion is done via a hook instead of JS
+* Adds support for any new `post` added to the database via `wp_insert_post()` (most common). Front end posts should now inherit tags as well.
 
 = 1.0 =
 * Initial Release
